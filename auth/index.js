@@ -34,7 +34,6 @@ function signUp() {
   let obj = {};
   obj.email = account.value;
   obj.password = password.value;
-  obj.role = "notAdmin";
   if (obj.email == "1admin1@mail.com" && obj.password == "1234") {
     obj.role = "admin";
     axios
@@ -50,6 +49,7 @@ function signUp() {
         alert("帳號註冊失敗，有可能有人使用你的帳號");
       });
   } else {
+    obj.role = "notAdmin";
     axios
       .post("https://final-json-auth.onrender.com/signup", obj)
       .then(function (response) {
