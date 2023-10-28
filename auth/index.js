@@ -27,7 +27,7 @@ function signUp() {
   if (obj.email == "1admin1@mail.com" && obj.password == "1234") {
     obj.role = "admin";
     axios
-      .post("https://practice-json-auth.onrender.com//signup", obj)
+      .post("https://final-json-auth.onrender.com//signup", obj)
       .then(function (response) {
         console.log(response.data);
         alert("恭喜帳號註冊成功");
@@ -40,7 +40,7 @@ function signUp() {
       });
   } else {
     axios
-      .post("https://practice-json-auth.onrender.com//signup", obj)
+      .post("https://final-json-auth.onrender.com//signup", obj)
       .then(function (response) {
         console.log(response.data);
         alert("恭喜帳號註冊成功");
@@ -64,7 +64,7 @@ function login() {
   obj.email = userEmail.value;
   obj.password = userPassword.value;
   axios
-    .post("https://practice-json-auth.onrender.com//login", obj)
+    .post("https://final-json-auth.onrender.com//login", obj)
     .then(function (response) {
       console.log(response.data);
       //token可以拿去做修改
@@ -101,8 +101,10 @@ function logOut() {
   location.href = "logout.html";
 }
 
+let collectionId;
 function getAllCollection(){
   console.log('getAllCollection')
+  collectionId = location.href.split('=')[1];
 }
 
 function addToCollection(){
