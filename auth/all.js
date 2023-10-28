@@ -7,7 +7,7 @@ let isBackList = currentUrl.includes("backendList");
 
 function getList() {
   axios
-    .get(`http://localhost:3000/views`, {
+    .get(`https://practice-json-auth.onrender.com//views`, {
       headers: {
         authorization: `Bearer ${token}`,
       },
@@ -69,7 +69,7 @@ function showDetail(id) {
   console.log(id);
   if (isBackList) {
     axios
-      .get(`http://localhost:3000/views/${id}`)
+      .get(`https://practice-json-auth.onrender.com//views/${id}`)
       .then(function (response) {
         console.log(response.data);
         //   detail.textContent  = response.data;
@@ -81,7 +81,7 @@ function showDetail(id) {
       });
   } else {
     axios
-      .get(`http://localhost:3000/views/${id}`)
+      .get(`https://practice-json-auth.onrender.com//views/${id}`)
       .then(function (response) {
         console.log(response.data);
         //   detail.textContent  = response.data;

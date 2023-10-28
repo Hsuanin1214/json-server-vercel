@@ -6,7 +6,7 @@ const addContent = document.querySelector(".addContent");
 //後臺取得資料
 // const tableBody = document.getElementById("tableBody");
 function tableData() {
-  axios.get("http://localhost:3000/views").then(function (response) {
+  axios.get("https://practice-json-auth.onrender.com//views").then(function (response) {
     let result = response.data;
     console.log(result);
     const tableBody = document.getElementById("tableBody");
@@ -65,7 +65,7 @@ tableData();
 function addBtn() {
   if (addTitle.value !== "" || addContent.value !== "") {
     axios
-      .post(`http://localhost:3000/views`, {
+      .post(`https://practice-json-auth.onrender.com//views`, {
         name: addTitle.value,
         description: addContent.value,
       })
@@ -87,7 +87,7 @@ let editTitle = document.querySelector('.editTitle');
   //編輯景點
   editId = location.href.split('=')[1];
   if(window.location.href == `http://127.0.0.1:5500/edit.html?id=${editId}`){
-    axios.get(`http://localhost:3000/views/${editId}`)
+    axios.get(`https://practice-json-auth.onrender.com//views/${editId}`)
     .then(function (response) {
       console.log(response)
       editTitle.value = JSON.stringify(response.data.name).replace(/^"(.*)"$/, '$1');
@@ -102,7 +102,7 @@ function editCheckBtn(e){
   editId = location.href.split("=")[1];
   e.preventDefault();
   if (editTitle.value !== '' || editContent.value !== '') {
-      axios.patch(`http://localhost:3000/views/${editId}`, {
+      axios.patch(`https://practice-json-auth.onrender.com//views/${editId}`, {
           "name": editTitle.value,
           "description": editContent.value
       })
@@ -125,7 +125,7 @@ function deleteBtn(e) {
   }
   let num = e.target.getAttribute("data-num");
   axios
-    .delete(`http://localhost:3000/views/${num}`)
+    .delete(`https://practice-json-auth.onrender.com//views/${num}`)
     .then(function (response) {
       alert("已刪除!");
       tableData();
