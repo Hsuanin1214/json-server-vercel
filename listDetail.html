@@ -11,18 +11,19 @@
 <body>
     <header>
         <div class="d-flex justify-content-between p-2 bg-secondary">
-            <h1  onclick="location.href='https://hsuanin1214.github.io/json-server-vercel/list.html'">LOGO</h1>
+            <h1 onclick="location.href='https://hsuanin1214.github.io/json-server-vercel/list.html'">LOGO</h1>
             <div class="d-flex align-items-center justify-content-center">
-                <button type="button" class="btn btn-primary me-2" onclick="location.href='https://hsuanin1214.github.io/json-server-vercel/like.html'">收藏</button>
+                <button type="button" class="btn btn-primary me-2"
+                    onclick="location.href='https://hsuanin1214.github.io/json-server-vercel/like.html'">收藏</button>
                 <button type="button" class="btn btn-primary" onClick="logOut()">登出</button>
             </div>
         </div>
     </header>
     <div class="container mt-5">
         <h3>景點內文</h3>
-        <button type="button" class="btn btn-info" onclick="collectBtn()">去收藏</button>
-        <p class="detail"></p>
-        
+        <button type="button" class="btn btn-info collectionBtn" onclick="addToCollection(event)">去收藏</button>
+        <p class="collectionContent"></p>
+
     </div>
     <script src="./bootstrap-5.0.0/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"
@@ -31,11 +32,39 @@
     <script src="./auth/index.js"></script>
     <script src="./auth/all.js"></script>
     <script>
-            let detail = document.querySelector(".detail");
-            let spotDetails = JSON.parse(localStorage.getItem("spotDetails"));
-            let formattedSpotDetails = JSON.stringify(spotDetails, null, 2);
-            console.log(spotDetails)
-            detail.textContent  = formattedSpotDetails;
+        let detail = document.querySelector(".detail");
+        let spotDetails = JSON.parse(localStorage.getItem("spotDetails"));
+        let formattedSpotDetails = JSON.stringify(spotDetails, null, 2);
+        console.log(spotDetails)
+        detail.textContent = formattedSpotDetails;
+
+        let collectionBtn = document.querySelector('.collectionBtn');
+        function addToCollection(e) {
+            // 更改收藏狀態+收藏區增加收藏資訊卡
+            e.preventDefault();
+            if (collectionBtn.textContent == '未收藏') {
+                collectionBtn.textContent = '已收藏';
+                // 收藏區增加資訊卡
+                axios.post(`https://demo-2o2s.onrender.com/600/users/${localStorage.getItem('SignUpId')}/collects`, {
+                    "id": data.id,
+                    "name": data.name,
+                    "description": data.description
+                }, {
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem('SignUpToken')}`
+                    }
+                })
+                    .then(function (response) {
+                        console.log(response);
+                        collected();
+                    })
+                    .catch(function (error) {
+                        console.log(error.response);
+                    });
+            } else {
+                collectionBtn.textContent = '未收藏';
+            }
+        }
     </script>
 </body>
 

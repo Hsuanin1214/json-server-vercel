@@ -1,6 +1,6 @@
 let token = "";
 let id = "";
-let role ="";
+let role = "";
 let signUpPage = document.querySelector(".signUpPage");
 let loginPage = document.querySelector(".loginPage");
 
@@ -11,6 +11,17 @@ function changeSignUp(isSignUp) {
   isSignUp == true
     ? loginPage.classList.add("isNotOnPage")
     : loginPage.classList.remove("isNotOnPage");
+}
+function logoutToSignUp(isSignUp) {
+  location.href = "index.html";
+  let signUpPage2 = document.querySelector(".signUpPage");
+  let loginPage2 = document.querySelector(".loginPage");
+  isSignUp == true
+    ? signUpPage2.classList.remove("isNotOnPage")
+    : signUpPage2.classList.add("isNotOnPage");
+  isSignUp == true
+    ? loginPage2.classList.add("isNotOnPage")
+    : loginPage2.classList.remove("isNotOnPage");
 }
 
 const account = document.querySelector(".account");
@@ -77,10 +88,12 @@ function login() {
       console.log(token);
       console.log(id);
       alert("登入成功");
-      if(obj.email == "1admin1@mail.com" && obj.password == "1234"){
-        window.location.href = "https://hsuanin1214.github.io/json-server-vercel/backendList.html";
-      }else{
-        window.location.href = "https://hsuanin1214.github.io/json-server-vercel/list.html";
+      if (obj.email == "1admin1@mail.com" && obj.password == "1234") {
+        window.location.href =
+          "https://hsuanin1214.github.io/json-server-vercel/backendList.html";
+      } else {
+        window.location.href =
+          "https://hsuanin1214.github.io/json-server-vercel/list.html";
       }
       let getDataToken = localStorage.getItem("userTestToken");
       let getDataId = localStorage.getItem("userTestId");
@@ -102,12 +115,7 @@ function logOut() {
 }
 
 let collectionId;
-function getAllCollection(){
-  console.log('getAllCollection')
-  collectionId = location.href.split('=')[1];
-}
-
-function addToCollection(){
-  console.log('addToCollection')
-  
+function getAllCollection() {
+  console.log("getAllCollection");
+  collectionId = location.href.split("=")[1];
 }
