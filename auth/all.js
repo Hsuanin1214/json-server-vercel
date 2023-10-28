@@ -74,7 +74,7 @@ function showDetail(id) {
         console.log(response.data);
         //   detail.textContent  = response.data;
         localStorage.setItem("spotDetails", JSON.stringify(response.data));
-        location.href = "https://hsuanin1214.github.io/test-fork-login/backendListDetail.html";
+        location.href = "https://hsuanin1214.github.io/json-server-vercel/backendListDetail.html";
       })
       .catch(function (error) {
         //   console.log(error.response);
@@ -86,7 +86,7 @@ function showDetail(id) {
         console.log(response.data);
         //   detail.textContent  = response.data;
         localStorage.setItem("spotDetails", JSON.stringify(response.data));
-        location.href = "https://hsuanin1214.github.io/test-fork-login/listDetail.html";
+        location.href = "https://hsuanin1214.github.io/json-server-vercel/listDetail.html";
       })
       .catch(function (error) {
         //   console.log(error.response);

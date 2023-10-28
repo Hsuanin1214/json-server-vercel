@@ -33,7 +33,7 @@ function tableData() {
       editLink.href = "#";
       editLink.className = "link-info";
       editLink.textContent = "編輯";
-      editLink.setAttribute("href", `https://hsuanin1214.github.io/test-fork-login/edit.html?id=${data.id}`);
+      editLink.setAttribute("href", `https://hsuanin1214.github.io/json-server-vercel/edit.html?id=${data.id}`);
 
       const deleteLink = document.createElement("a");
       deleteLink.href = "#";
@@ -86,7 +86,7 @@ let editContent = document.querySelector('.editContent');
 let editTitle = document.querySelector('.editTitle');
   //編輯景點
   editId = location.href.split('=')[1];
-  if(window.location.href == `https://hsuanin1214.github.io/test-fork-login/edit.html?id=${editId}`){
+  if(window.location.href == `https://hsuanin1214.github.io/json-server-vercel/edit.html?id=${editId}`){
     axios.get(`https://final-json-auth.onrender.com/views/${editId}`)
     .then(function (response) {
       console.log(response)

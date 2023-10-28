@@ -78,9 +78,9 @@ function login() {
       console.log(id);
       alert("登入成功");
       if(obj.email == "1admin1@mail.com" && obj.password == "1234"){
-        window.location.href = "https://hsuanin1214.github.io/test-fork-login/backendList.html";
+        window.location.href = "https://hsuanin1214.github.io/json-server-vercel/backendList.html";
       }else{
-        window.location.href = "https://hsuanin1214.github.io/test-fork-login/list.html";
+        window.location.href = "https://hsuanin1214.github.io/json-server-vercel/list.html";
       }
       let getDataToken = localStorage.getItem("userTestToken");
       let getDataId = localStorage.getItem("userTestId");
