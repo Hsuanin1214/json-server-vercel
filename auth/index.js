@@ -114,8 +114,8 @@ function logOut() {
   location.href = "logout.html";
 }
 
-let collectionId;
+// let collectionId;
 function getAllCollection() {
   console.log("getAllCollection");
-  collectionId = location.href.split("=")[1];
+  // collectionId = location.href.split("=")[1];
 }
