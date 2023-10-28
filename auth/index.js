@@ -64,7 +64,7 @@ function login() {
   obj.email = userEmail.value;
   obj.password = userPassword.value;
   axios
-    .post("https://final-json-auth.onrender.com/login", obj)
+    .post("https://final-json-auth.onrender.com/users", obj)
     .then(function (response) {
       console.log(response.data);
       //token可以拿去做修改
