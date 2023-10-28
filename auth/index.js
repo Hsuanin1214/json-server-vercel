@@ -49,7 +49,7 @@ function signUp() {
         alert("帳號註冊失敗，有可能有人使用你的帳號");
       });
   } else {
-    obj.role = "notAdmin";
+    // obj.role = "notAdmin";
     axios
       .post("https://final-json-auth.onrender.com/signup", obj)
       .then(function (response) {
@@ -68,6 +68,7 @@ const userEmail = document.querySelector(".userEmail");
 const userPassword = document.querySelector(".userPassword");
 
 function login() {
+  console.log('login')
   if (userEmail.value == "" || userPassword.value == "") {
     alert("請填入正確資訊");
   }
@@ -75,7 +76,7 @@ function login() {
   obj.email = userEmail.value;
   obj.password = userPassword.value;
   axios
-    .post("https://final-json-auth.onrender.com/users", obj)
+    .post("https://final-json-auth.onrender.com/login", obj)
     .then(function (response) {
       console.log(response.data);
       //token可以拿去做修改
@@ -103,7 +104,7 @@ function login() {
       console.log(getDataAry);
     })
     .catch(function (error) {
-      let errorMsg = error;
+      console.log(error)
       alert("登入失敗");
     });
 }

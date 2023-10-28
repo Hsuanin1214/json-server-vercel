@@ -37,8 +37,9 @@
         let formattedSpotDetails = JSON.stringify(spotDetails);
         detail.textContent = formattedSpotDetails;
         let responseData;
-        let collectionId = location.href.split('=')[1];
-        console.log(spotDetails)
+        let collectionId = spotDetails.id;
+        let isCollected = false;
+        console.log(localStorage.getItem('userTestId'))
         // 渲染db.json
         function showContent() {
             axios.get(`https://final-json-auth.onrender.com/views/${collectionId}`)
@@ -55,11 +56,12 @@
             // 更改收藏狀態+收藏區增加收藏資訊卡
             e.preventDefault();
             let collectionBtn = document.querySelector('.collectionBtn');
-            if (collectionBtn.textContent == '未收藏') {
+            if (!isCollected) {
                 collectionBtn.textContent = '已收藏';
+                isCollected = true;
                 // 收藏區增加資訊卡
-                axios.post(`https://final-json-auth.onrender.com/600/users/${localStorage.getItem('userTestId')}/collects`, {
-                    "id": responseData.id,
+                axios.post(`https://final-json-auth.onrender.com/collects`, {
+                    "userId": localStorage.getItem('userTestId'),
                     "name": responseData.name,
                     "description": responseData.description
                 }, {
@@ -76,6 +78,7 @@
                     });
             } else {
                 collectionBtn.textContent = '未收藏';
+                isCollected = false;
             }
         }
     </script>

@@ -11,7 +11,7 @@
 <body>
     <header>
         <div class="d-flex justify-content-between p-2 bg-secondary">
-            <h1  onclick="location.href='https://hsuanin1214.github.io/json-server-vercel/list.html'">LOGO</h1>
+            <h1 onclick="location.href='https://hsuanin1214.github.io/json-server-vercel/list.html'">LOGO</h1>
             <div class="d-flex align-items-center justify-content-center">
                 <button type="button" class="btn btn-primary me-2">收藏</button>
                 <button type="button" class="btn btn-primary" onClick="logOut()">登出</button>
@@ -20,8 +20,8 @@
     </header>
     <div class="container mt-5">
         <h3>收藏列表</h3>
-        <div class="d-flex">
-            <div class="card me-3" style="width: 18rem;">
+        <div class="d-flex bookmarkList">
+            <!-- <div class="card me-3" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">Card title</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
@@ -38,7 +38,7 @@
                         content.</p>
                     <button type="button" class="btn btn-primary">已收藏</button>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
     <script src="./bootstrap-5.0.0/js/bootstrap.bundle.min.js"></script>
@@ -46,6 +46,72 @@
         integrity="sha512-emSwuKiMyYedRwflbZB2ghzX8Cw8fmNVgZ6yQNNXXagFzFOaQmbvQ1vmDkddHjm5AITcBIZfC7k4ShQSjgPAmQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./auth/index.js"></script>
+    <script>
+        let collectData = [];
+        let bookmarkList = document.querySelector('.bookmarkList');
+        // 收藏資料卡
+        function collected() {
+            axios.get(`https://final-json-auth.onrender.com/collects?userId=${localStorage.getItem('userTestId')}`, {
+            })
+                .then(function (response) {
+                    if (Array.isArray(response.data)) {
+                        collectData = response.data;
+                        renderCollectData();
+                    } else {
+                        console.error("API didn't return an array as expected.");
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        };
+        collected();
+
+        // 渲染收藏的資料卡
+        function renderCollectData() {
+            let str = '';
+            collectData.forEach(function (item) {
+                str +=
+                    `
+        <div class="card me-3" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">${item.name}</h5>
+                    <p class="card-text">${item.description}</p>
+                    <button type="button" class="btn btn-primary infoCollected" data-num=${item.id} onclick="cancelCollect(event)">已收藏</button>
+                </div>
+            </div>
+        `
+            });
+            bookmarkList.innerHTML = str;
+        }
+
+        // 取消收藏
+        function cancelCollect(e) {
+            if (e.target.classList.contains('infoCollected')) {
+                console.log('取消')
+                e.preventDefault();
+
+                let num = e.target.getAttribute('data-num');
+                let card = e.target.closest(".card");
+                card.remove(); // 先移除DOM元素提供更好的用户体验
+
+                axios.delete(`https://final-json-auth.onrender.com/collects/${num}`, {
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem('userTestToken')}`
+                    }
+                })
+                    .then(function (response) {
+                        console.log(response);
+                        alert('已删除!');
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                        alert("An error occurred while deleting the item.");
+                        // 如果API删除失败，可以选择将元素再次添加回DOM，或其他操作
+                    });
+            };
+        };
+    </script>
 </body>
 
 </html>
