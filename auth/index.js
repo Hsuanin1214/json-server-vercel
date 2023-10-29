@@ -13,18 +13,34 @@ function changeSignUp(isSignUp) {
     ? loginPage.classList.add("isNotOnPage")
     : loginPage.classList.remove("isNotOnPage");
 }
-// function logoutToSignUp(isSignUp) {
-//   location.href = "https://hsuanin1214.github.io/json-server-vercel/index.html";
-//   let signUpPage2 = document.querySelector(".signUpPage");
-//   let loginPage2 = document.querySelector(".loginPage");
-//   console.log(isSignUp == true)
-//   isSignUp == true
-//     ? signUpPage2.classList.remove("isNotOnPage")
-//     : signUpPage2.classList.add("isNotOnPage");
-//   isSignUp == true
-//     ? loginPage2.classList.add("isNotOnPage")
-//     : loginPage2.classList.remove("isNotOnPage");
-// }
+function logoutToSignUp(isSignUp) {
+  localStorage.setItem('view', isSignUp ? 'signup' : 'login');
+  location.href = "index.html";
+
+  let signUpPage2 = document.querySelector(".signUpPage");
+  let loginPage2 = document.querySelector(".loginPage");
+  isSignUp
+    ? signUpPage2.classList.remove("isNotOnPage")
+    : signUpPage2.classList.add("isNotOnPage");
+  isSignUp
+    ? loginPage2.classList.add("isNotOnPage")
+    : loginPage2.classList.remove("isNotOnPage");
+}
+document.addEventListener("DOMContentLoaded", function() {
+  let view = localStorage.getItem('view');
+  let signUpPage2 = document.querySelector(".signUpPage");
+  let loginPage2 = document.querySelector(".loginPage");
+
+  if (view === 'signup') {
+    signUpPage2.classList.remove("isNotOnPage");
+    loginPage2.classList.add("isNotOnPage");
+  }else{
+    signUpPage2.classList.add("isNotOnPage");
+    loginPage2.classList.remove("isNotOnPage");
+  }
+
+  localStorage.removeItem('view');
+});
 
 const account = document.querySelector(".account");
 const password = document.querySelector(".password");
