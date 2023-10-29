@@ -13,7 +13,7 @@ function changeSignUp(isSignUp) {
     : loginPage.classList.remove("isNotOnPage");
 }
 function logoutToSignUp(isSignUp) {
-  location.href = "index.html";
+  location.href = "https://hsuanin1214.github.io/json-server-vercel/index.html";
   let signUpPage2 = document.querySelector(".signUpPage");
   let loginPage2 = document.querySelector(".loginPage");
   isSignUp == true
