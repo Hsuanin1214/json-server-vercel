@@ -4,17 +4,17 @@ let role = "";
 //let signUpPage = document.querySelector(".signUpPage");
 //let loginPage = document.querySelector(".loginPage");
 
-function changeSignUp(isSignUp) {
-  location.href = "https://hsuanin1214.github.io/json-server-vercel/index.html";
-  let signUpPage = document.querySelector(".signUpPage");
-  let loginPage = document.querySelector(".loginPage");
-  isSignUp == true
-    ? signUpPage.classList.remove("isNotOnPage")
-    : signUpPage.classList.add("isNotOnPage");
-  isSignUp == true
-    ? loginPage.classList.add("isNotOnPage")
-    : loginPage.classList.remove("isNotOnPage");
-}
+// function changeSignUp(isSignUp) {
+//   location.href = "https://hsuanin1214.github.io/json-server-vercel/index.html";
+//   let signUpPage = document.querySelector(".signUpPage");
+//   let loginPage = document.querySelector(".loginPage");
+//   isSignUp == true
+//     ? signUpPage.classList.remove("isNotOnPage")
+//     : signUpPage.classList.add("isNotOnPage");
+//   isSignUp == true
+//     ? loginPage.classList.add("isNotOnPage")
+//     : loginPage.classList.remove("isNotOnPage");
+// }
 // function logoutToSignUp(isSignUp) {
 //   localStorage.setItem('view', isSignUp ? 'signup' : 'login');
 //   location.href = "index.html";
