@@ -1,11 +1,13 @@
 let token = "";
 let id = "";
 let role = "";
-let signUpPage = document.querySelector(".signUpPage");
-let loginPage = document.querySelector(".loginPage");
+//let signUpPage = document.querySelector(".signUpPage");
+//let loginPage = document.querySelector(".loginPage");
 
 function changeSignUp(isSignUp) {
   location.href = "https://hsuanin1214.github.io/json-server-vercel/index.html";
+  let signUpPage = document.querySelector(".signUpPage");
+  let loginPage = document.querySelector(".loginPage");
   isSignUp == true
     ? signUpPage.classList.remove("isNotOnPage")
     : signUpPage.classList.add("isNotOnPage");
