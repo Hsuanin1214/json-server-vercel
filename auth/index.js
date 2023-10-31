@@ -1,48 +1,6 @@
 let token = "";
 let id = "";
 let role = "";
-//let signUpPage = document.querySelector(".signUpPage");
-//let loginPage = document.querySelector(".loginPage");
-
-// function changeSignUp(isSignUp) {
-//   location.href = "https://hsuanin1214.github.io/json-server-vercel/index.html";
-//   let signUpPage = document.querySelector(".signUpPage");
-//   let loginPage = document.querySelector(".loginPage");
-//   isSignUp == true
-//     ? signUpPage.classList.remove("isNotOnPage")
-//     : signUpPage.classList.add("isNotOnPage");
-//   isSignUp == true
-//     ? loginPage.classList.add("isNotOnPage")
-//     : loginPage.classList.remove("isNotOnPage");
-// }
-// function logoutToSignUp(isSignUp) {
-//   localStorage.setItem('view', isSignUp ? 'signup' : 'login');
-//   location.href = "index.html";
-
-//   let signUpPage2 = document.querySelector(".signUpPage");
-//   let loginPage2 = document.querySelector(".loginPage");
-//   isSignUp
-//     ? signUpPage2.classList.remove("isNotOnPage")
-//     : signUpPage2.classList.add("isNotOnPage");
-//   isSignUp
-//     ? loginPage2.classList.add("isNotOnPage")
-//     : loginPage2.classList.remove("isNotOnPage");
-// }
-// document.addEventListener("DOMContentLoaded", function() {
-//   let view = localStorage.getItem('view');
-//   let signUpPage2 = document.querySelector(".signUpPage");
-//   let loginPage2 = document.querySelector(".loginPage");
-
-//   if (view === 'signup') {
-//     signUpPage2.classList.remove("isNotOnPage");
-//     loginPage2.classList.add("isNotOnPage");
-//   }else{
-//     signUpPage2.classList.add("isNotOnPage");
-//     loginPage2.classList.remove("isNotOnPage");
-//   }
-
-//   localStorage.removeItem('view');
-// });
 
 const account = document.querySelector(".account");
 const password = document.querySelector(".password");
@@ -110,11 +68,11 @@ function login() {
       console.log(id);
       alert("登入成功");
       if (obj.email == "1admin1@mail.com" && obj.password == "1234") {
-        window.location.href =
-          "https://hsuanin1214.github.io/json-server-vercel/backendList.html";
+        location.href =
+          `backendList.html?id=${id}`;
       } else {
-        window.location.href =
-          "https://hsuanin1214.github.io/json-server-vercel/list.html";
+        location.href =
+          `list.html?id=${id}`;
       }
       let getDataToken = localStorage.getItem("userTestToken");
       let getDataId = localStorage.getItem("userTestId");
