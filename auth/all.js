@@ -57,7 +57,16 @@ function getList() {
       console.log(error.response);
     });
 }
-getList();
+
+document.addEventListener("DOMContentLoaded", function() {
+  // 檢查是否存在"userTestId"
+  if (!localStorage.getItem('userTestId')) {
+      alert('請先登入！');
+      window.location.href = 'login.html'; // 重定向到登入頁面
+  }else{
+    getList();
+  }
+});
 
 // 渲染db.json
 function showDetail(id) {
