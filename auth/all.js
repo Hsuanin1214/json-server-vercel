@@ -39,8 +39,6 @@ function getList() {
         detailButton.addEventListener("click", function (event) {
           clickedButton = event.target; // 保存点击按钮的引用
           const id = event.target.getAttribute("data-id");
-          document.addEventListener("DOMContentLoaded", function() {
-            console.log("hi")
             // 檢查是否存在"userTestId"
             if (!localStorage.getItem('userTestId')) {
               console.log("x")
@@ -50,7 +48,6 @@ function getList() {
               console.log("o")
               showDetail(id);
             }
-          });
         });
         cardDiv.appendChild(cardTitle);
         cardDiv.appendChild(cardText);
