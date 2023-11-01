@@ -7,11 +7,7 @@ let isBackList = currentUrl.includes("backendList");
 
 function getList() {
   axios
-    .get(`https://final-json-auth.onrender.com/views`, {
-      headers: {
-        authorization: `Bearer ${token}`,
-      },
-    })
+    .get(`https://final-json-auth.onrender.com/views`)
     .then(function (response) {
       console.log(response.data);
       let userData = response.data;
@@ -37,13 +33,12 @@ function getList() {
         detailButton.type = "button";
         detailButton.className = "btn btn-primary detail";
         detailButton.setAttribute("data-id", data.id);
-        detailButton.setAttribute("href", `listDetail.html?id=${data.id}`);
+        // detailButton.setAttribute("href", `listDetail.html?id=${data.id}`);
         detailButton.textContent = "看詳細";
         // 添加事件监听器到每个按钮
         detailButton.addEventListener("click", function (event) {
           clickedButton = event.target; // 保存点击按钮的引用
           const id = event.target.getAttribute("data-id");
-          console.log(id);
           showDetail(id);
         });
         cardDiv.appendChild(cardTitle);
@@ -59,37 +54,24 @@ function getList() {
       });
     })
     .catch(function (error) {
-      let errorMsg = error;
+      console.log(error.response);
     });
 }
 getList();
 
 // 渲染db.json
 function showDetail(id) {
-  console.log(id);
-  if (isBackList) {
     axios
       .get(`https://final-json-auth.onrender.com/views/${id}`)
       .then(function (response) {
-        console.log(response.data);
-        //   detail.textContent  = response.data;
         localStorage.setItem("spotDetails", JSON.stringify(response.data));
-        location.href = "https://hsuanin1214.github.io/json-server-vercel/backendListDetail.html";
+        if(isBackList){
+          location.href = "backendListDetail.html";
+        }else{
+          location.href = "listDetail.html";
+        }
       })
       .catch(function (error) {
-        //   console.log(error.response);
+          console.log(error.response);
       });
-  } else {
-    axios
-      .get(`https://final-json-auth.onrender.com/views/${id}`)
-      .then(function (response) {
-        console.log(response.data);
-        //   detail.textContent  = response.data;
-        localStorage.setItem("spotDetails", JSON.stringify(response.data));
-        location.href = "https://hsuanin1214.github.io/json-server-vercel/listDetail.html";
-      })
-      .catch(function (error) {
-        //   console.log(error.response);
-      });
-  }
 }

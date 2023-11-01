@@ -92,9 +92,3 @@ function logOut() {
   localStorage.clear();
   location.href = "logout.html";
 }
-
-// let collectionId;
-function getAllCollection() {
-  console.log("getAllCollection");
-  // collectionId = location.href.split("=")[1];
-}

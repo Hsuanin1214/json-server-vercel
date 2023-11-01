@@ -11,10 +11,10 @@
 <body>
     <header>
         <div class="d-flex justify-content-between p-2 bg-secondary">
-            <h1 onclick="location.href='https://hsuanin1214.github.io/json-server-vercel/list.html'">LOGO</h1>
+            <h1 onclick="location.href='list.html'">LOGO</h1>
             <div class="d-flex align-items-center justify-content-center">
                 <button type="button" class="btn btn-primary me-2"
-                    onclick="location.href='https://hsuanin1214.github.io/json-server-vercel/like.html'">收藏</button>
+                    onclick="location.href='like.html'">收藏</button>
                 <button type="button" class="btn btn-primary" onClick="logOut()">登出</button>
             </div>
         </div>
@@ -45,6 +45,7 @@
             axios.get(`https://final-json-auth.onrender.com/views/${collectionId}`)
                 .then(function (response) {
                     responseData = response.data;
+
                 })
                 .catch(function (error) {
                     console.log(error.response);
@@ -60,7 +61,7 @@
                 collectionBtn.textContent = '已收藏';
                 isCollected = true;
                 // 收藏區增加資訊卡
-                axios.post(`https://final-json-auth.onrender.com/collects`, {
+                axios.post(`https://final-json-auth.onrender.com/600/users/${localStorage.getItem('userTestId')}/collects`, {
                     "userId": localStorage.getItem('userTestId'),
                     "name": responseData.name,
                     "description": responseData.description
