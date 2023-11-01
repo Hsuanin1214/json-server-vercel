@@ -10,7 +10,7 @@ function tableData() {
     let result = response.data;
     console.log(result);
     const tableBody = document.getElementById("tableBody");
-    tableBody='';
+    tableBody.innerHTML='';
     // 渲染数据
     result.forEach((data) => {
       const row = document.createElement("tr");
