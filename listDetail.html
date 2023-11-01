@@ -61,7 +61,7 @@
                 collectionBtn.textContent = '已收藏';
                 isCollected = true;
                 // 收藏區增加資訊卡
-                axios.post(`https://final-json-auth.onrender.com/600/users/${localStorage.getItem('userTestId')}/collects`, {
+                axios.post(`https://final-json-auth.onrender.com/collects`, {
                     "userId": localStorage.getItem('userTestId'),
                     "name": responseData.name,
                     "description": responseData.description
