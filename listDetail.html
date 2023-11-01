@@ -13,8 +13,7 @@
         <div class="d-flex justify-content-between p-2 bg-secondary">
             <h1 onclick="location.href='list.html'">LOGO</h1>
             <div class="d-flex align-items-center justify-content-center">
-                <button type="button" class="btn btn-primary me-2"
-                    onclick="location.href='like.html'">收藏</button>
+                <button type="button" class="btn btn-primary me-2" onclick="location.href='like.html'">收藏</button>
                 <button type="button" class="btn btn-primary" onClick="logOut()">登出</button>
             </div>
         </div>
@@ -45,13 +44,29 @@
             axios.get(`https://final-json-auth.onrender.com/views/${collectionId}`)
                 .then(function (response) {
                     responseData = response.data;
-
+                    checkIfCollected();
                 })
                 .catch(function (error) {
                     console.log(error.response);
                 })
         };
         showContent();
+        // 在showContent()後添加此函数
+        function checkIfCollected() {
+            axios.get(`https://final-json-auth.onrender.com/collects?userId=${localStorage.getItem('userTestId')}`)
+                .then(function (response) {
+                    const userCollections = response.data;
+                    const isSpotCollected = userCollections.some(item => item.name === responseData.name);
+
+                    if (isSpotCollected) {
+                        document.querySelector('.collectionBtn').textContent = '已收藏';
+                        isCollected = true;
+                    }
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
 
         function addToCollection(e) {
             // 更改收藏狀態+收藏區增加收藏資訊卡
