@@ -39,7 +39,15 @@ function getList() {
         detailButton.addEventListener("click", function (event) {
           clickedButton = event.target; // 保存点击按钮的引用
           const id = event.target.getAttribute("data-id");
-          showDetail(id);
+          document.addEventListener("DOMContentLoaded", function() {
+            // 檢查是否存在"userTestId"
+            if (!localStorage.getItem('userTestId')) {
+                alert('請先登入！');
+                window.location.href = 'login.html'; // 重定向到登入頁面
+            }else{
+              showDetail(id);
+            }
+          });
         });
         cardDiv.appendChild(cardTitle);
         cardDiv.appendChild(cardText);
@@ -58,15 +66,7 @@ function getList() {
     });
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-  // 檢查是否存在"userTestId"
-  if (!localStorage.getItem('userTestId')) {
-      alert('請先登入！');
-      window.location.href = 'login.html'; // 重定向到登入頁面
-  }else{
-    getList();
-  }
-});
+getList();
 
 // 渲染db.json
 function showDetail(id) {
